@@ -35,8 +35,8 @@ const pages = [
   {
     title: "Just So You Know 🌷",
     text: `Tum jaisi ho, waisi hi rehna ✨
-Simple si, sweet si, aur apni duniya me khush rehne wali 🌸
-Bas tum — exactly tum hi kaafi ho 💫`,
+    Simple si, sweet si, aur apni duniya me khush rehne wali 🌸
+    Bas tum — exactly tum hi kaafi ho 💫`,
     button: "Aage Chalte Hain 👀",
     bg: "from-pink-50 via-rose-100 to-pink-200",
     image: photo1,
@@ -93,7 +93,7 @@ Bas tum — exactly tum hi kaafi ho 💫`,
   },
 ];
 
-export default function CrushWebsite() {
+  export default function CrushWebsite() {
   const [page, setPage] = useState(0);
   useEffect(() => {
   window.scrollTo(0, 0);
@@ -101,23 +101,28 @@ export default function CrushWebsite() {
   const [response, setResponse] = useState("");
   const [celebrate, setCelebrate] = useState(false);
   const [mouse, setMouse] = useState({ x: 0, y: 0 });
-  
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
 
   const current = pages[page];
 
-  useEffect(() => {
-    const handleMove = (e) => setMouse({ x: e.clientX, y: e.clientY });
-    window.addEventListener("mousemove", handleMove);
-    return () => window.removeEventListener("mousemove", handleMove);
-  }, []);
+      useEffect(() => {
+        const checkTouch = () => {
+        setIsTouchDevice(
+        window.matchMedia("(pointer: coarse)").matches ||
+        "ontouchstart" in window ||
+        navigator.maxTouchPoints > 0
+        );
+        };
 
-  return (
-    <div
-      className={`min-h-screen flex items-center justify-center px-4 py-8 overflow-hidden relative bg-gradient-to-br ${current.bg}`}
-      style={{
+        checkTouch();
+      }, []);
+    return (
+      <div
+       className={`min-h-screen flex items-center justify-center px-4 py-8 overflow-hidden relative bg-gradient-to-br ${current.bg}`}
+        style={{
         backgroundPosition: `${mouse.x / 50}px ${mouse.y / 50}px`,
-      }}
-    >
+        }}
+      >
 
       {/* Dreamy Blur Lights */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -134,36 +139,38 @@ export default function CrushWebsite() {
 
         </div>
 
+        {!isTouchDevice && mouse.x !== 0 && (
         <div
           className="fixed pointer-events-none z-50"
           style={{
           left: mouse.x - 150,
           top: mouse.y - 150,
-        }}
+          }}
         >
-      <div className="w-72 h-72 rounded-full bg-pink-500 opacity-40 blur-[120px]" />
-      </div>
+        <div className="w-72 h-72 rounded-full bg-pink-500 opacity-40 blur-[120px]" />
+        </div>
+        )}
 
       {celebrate && <Confetti />}
 
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
 
-  {[...Array(20)].map((_, i) => (
-    <div
-      key={i}
-      className="absolute text-pink-300 animate-pulse"
-      style={{
+    {[...Array(20)].map((_, i) => (
+      <div
+        key={i}
+        className="absolute text-pink-300 animate-pulse"
+        style={{
         left: `${Math.random() * 100}%`,
         top: `${Math.random() * 100}%`,
         fontSize: `${15 + Math.random() * 20}px`,
         animationDuration: `${3 + Math.random() * 5}s`,
-      }}
-    >
+        }}
+      >
       🌸
-    </div>
-  ))}
+      </div>
+    ))}
 
-</div>
+    </div>
 
       {/* Floating Teddy Backgrounds */}
 
@@ -343,20 +350,20 @@ export default function CrushWebsite() {
               </button>
 
       <button
-  onClick={() => setResponse("no")}
-  onMouseEnter={(e) => {
+      onClick={() => setResponse("no")}
+    onMouseEnter={(e) => {
     const x = Math.random() * 40 - 20;
     const y = Math.random() * 20 - 10;
 
     e.target.style.transform = `translate(${x}px, ${y}px) scale(0.95)`;
-  }}
-  onMouseLeave={(e) => {
+    }}
+    onMouseLeave={(e) => {
     e.target.style.transform = "translate(0px,0px) scale(1)";
-  }}
-  className="ml-4 px-8 py-4 bg-pink-100 text-pink-600 rounded-full shadow-xl transition-all duration-200"
->
-  No 👀
-</button>
+    }}
+    className="ml-4 px-8 py-4 bg-pink-100 text-pink-600 rounded-full shadow-xl transition-all duration-200"
+    >
+     No 👀
+    </button>
 
               {response === "yes" && (
         <div className="fixed inset-0 flex items-center justify-center bg-black/40 backdrop-blur-sm z-50">
