@@ -13,6 +13,7 @@ import photo7 from "./assets/photo7.png";
 import photo8 from "./assets/photo8.png";
 import photo9 from "./assets/photo9.png";
 import photo10 from "./assets/photo10.jpg";
+import photo11 from "./assets/photo11.png";
 import teddy from "./assets/teddy.jpg";
 import guitar from "./assets/guitar.jpg";
 import video from "./assets/video.mp4";
@@ -54,14 +55,14 @@ const pages = [
     text: "And somehow, this whole website still feels less pretty than your smile 🌷",
     button: "Okay Continue 👀",
     bg: "from-pink-50 via-purple-50 to-rose-100",
-    image: photo3,
+    image: photo11,
   },
   {
     title: "Some Cute Moments 📸",
     subtitle: "Too much cuteness ahead ✨",
     button: "Ab Thoda Music 🎶",
     bg: "from-pink-50 via-rose-100 to-fuchsia-50",
-    photos: [photo1,photo2,photo3,photo4,photo5,photo6,photo7,photo8,photo9,photo10],
+    photos: [photo1,photo2,photo3,photo4,photo5,photo6,photo7,photo8,photo9,photo10,photo11],
   },
 
   {
@@ -348,7 +349,7 @@ const pages = [
           )}
 
           {current.photos && (
-  <div className="relative w-full h-[380px] sm:h-[650px] mt-10 scale-[0.85] sm:scale-100 origin-top">
+  <div className="relative w-full h-[500px] sm:h-[650px] mt-10 scale-[0.85] sm:scale-100 origin-top">
 
     {current.photos.map((p, i) => {
       const positions = [
@@ -362,6 +363,7 @@ const pages = [
         "bottom-24 left-1/2 rotate-[-7deg]",
         "top-72 left-20 rotate-[5deg]",
         "bottom-0 right-1/3 rotate-[-5deg]",
+        "top-56 left-[42%] rotate-[4deg]",
       ];
 
       const shapes = [
@@ -378,7 +380,7 @@ const pages = [
           src={p}
           alt=""
           className={`absolute ${positions[i % positions.length]}
-          w-24 h-32 sm:w-40 sm:h-52 object-cover
+          w-20 h-28 sm:w-40 sm:h-52
           ${shapes[i % shapes.length]}
           shadow-2xl border-4 border-white
           hover:scale-110 transition duration-500`}
