@@ -102,6 +102,7 @@ const pages = [
   const [celebrate, setCelebrate] = useState(false);
   const [mouse, setMouse] = useState({ x: 0, y: 0 });
   const [isTouchDevice, setIsTouchDevice] = useState(false);
+  const [showNotice, setShowNotice] = useState(true);
 
   const current = pages[page];
 
@@ -116,13 +117,93 @@ const pages = [
 
         checkTouch();
       }, []);
-    return (
-      <div
-       className={`min-h-screen flex items-center justify-center px-4 py-8 overflow-hidden relative bg-gradient-to-br ${current.bg}`}
-        style={{
+
+     return (
+  <>
+    {showNotice && (
+      <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/50 backdrop-blur-md px-4 py-4">
+        <div className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-white rounded-[30px] p-6 sm:p-8 text-center shadow-2xl border border-pink-200">
+
+          <button
+            onClick={() => setShowNotice(false)}
+            className="absolute top-4 right-5 text-pink-500 text-2xl font-bold"
+          >
+            ✕
+          </button>
+
+          <h2 className="text-3xl font-bold text-pink-500 mb-6">
+            🌷 Just A Small Note 🌷
+          </h2>
+
+          <div className="mt-6 space-y-4 text-left">
+
+  <div className="bg-pink-50 p-4 rounded-2xl shadow-sm">
+    <p className="font-semibold text-pink-600">
+      🌸 Hello Sehat,
+    </p>
+  </div>
+
+  <div className="bg-white p-4 rounded-2xl border border-pink-100 shadow-sm">
+    <p className="font-medium text-gray-700">
+      Aaj kal log itna scroll karte hain ki kisi cheez ke liye do minute rukna bhi kaafi rare ho gaya hai.
+    </p>
+  </div>
+
+  <div className="bg-pink-50 p-4 rounded-2xl shadow-sm">
+    <p className="font-medium text-gray-700">
+      Isliye agar tum yahan tak aa gayi ho, to sabse pehle — thank you. ✨
+    </p>
+  </div>
+
+  <div className="bg-white p-4 rounded-2xl border border-pink-100 shadow-sm">
+    <p className="font-medium text-gray-700">
+      Aage jo bhi hai, wo bas thodi si creativity, thoda sa effort, aur thodi si randomness ka combination hai. 😄
+    </p>
+  </div>
+
+  <div className="bg-pink-50 p-4 rounded-2xl shadow-sm">
+    <p className="font-medium text-gray-700">
+      Koi hidden meaning nahi, koi pressure nahi, aur koi expectations bhi nahi.
+    </p>
+  </div>
+
+  <div className="bg-white p-4 rounded-2xl border border-pink-100 shadow-sm">
+    <p className="font-medium text-gray-700">
+      Bas itna sa hope hai ki is chhoti si website ko explore karte waqt tumhare face par ek smile zaroor aaye. 🌸
+    </p>
+  </div>
+
+  <div className="bg-pink-50 p-4 rounded-2xl shadow-sm">
+    <p className="font-bold text-pink-600">
+      Aur agar kisi point par tumne "ye actually cute tha" soch liya, to samajh lena ki website apna kaam kar chuki hai. 🤍
+    </p>
+  </div>
+
+  <div className="bg-gradient-to-r from-pink-100 to-rose-100 p-4 rounded-2xl shadow-sm">
+    <p className="font-bold text-pink-700">
+      ✨ Now, enjoy the journey ahead ✨
+    </p>
+  </div>
+
+</div>
+
+          <button
+            onClick={() => setShowNotice(false)}
+            className="mt-8 px-8 py-3 bg-gradient-to-r from-pink-400 to-rose-400 text-white rounded-full shadow-lg"
+          >
+            Continue 🌸
+          </button>
+
+        </div>
+      </div>
+    )}
+
+    <div
+      className={`min-h-screen flex items-center justify-center px-4 py-8 overflow-hidden relative bg-gradient-to-br ${current.bg}`}
+      style={{
         backgroundPosition: `${mouse.x / 50}px ${mouse.y / 50}px`,
-        }}
-      >
+      }}
+    >
 
       {/* Dreamy Blur Lights */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -405,5 +486,6 @@ const pages = [
         </motion.div>
       </AnimatePresence>
     </div>
+  </>
   );
 }
