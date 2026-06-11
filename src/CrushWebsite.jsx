@@ -87,7 +87,7 @@ const pages = [
   },
 
   {
-    title: "Would You Like To Be My Friend? ✨🤍",
+    title: "Would You Like To Be My Best Friend? ✨🤍",
     button: "💌",
     bg: "from-pink-50 via-rose-50 to-fuchsia-100",
     image: photo5,
